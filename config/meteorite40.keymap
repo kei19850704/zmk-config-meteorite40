@@ -120,18 +120,11 @@
     };
 
     macros {
-        altenter: altenter {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&kp LEFT_ALT &kp ENTER>;
-            label = "ALTENTER";
-        };
-
-        WinD: new_macro {
+        WinD: WinD {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings = <&kp LEFT_WIN &kp D>;
-            label = "NEW_MACRO";
+            label = "WinD";
         };
 
         ctrlZ: ctrlZ {
@@ -148,11 +141,11 @@
             label = "CTRLX";
         };
 
-        ctrlV: new_macro {
+        ctrlV: ctrlV {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings = <&kp LEFT_CONTROL &kp V>;
-            label = "NEW_MACRO";
+            label = "ctrlV";
         };
 
         ctrlC: ctrlC {
@@ -182,6 +175,13 @@
             bindings = <&kp LEFT_WIN &kp TAB>;
             label = "WINTAB";
         };
+
+        altenter: altenter {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LEFT_ALT &kp ENTER>;
+            label = "altenter";
+        };
     };
 
     keymap {
@@ -199,7 +199,7 @@
 
             sensor-bindings =
                 <&mouse_scroll_var SCRL_RIGHT SCRL_LEFT>,
-                // RE0(左): 時計回/右スクロール、反時計回/左スクロール,,,,,,,,,,,,,,,,,,,,,,
+                // RE0(左): 時計回/右スクロール、反時計回/左スクロール,,,,,,,,,,,,,,,,,,,,,,,
                 <&mouse_scroll_var SCRL_UP SCRL_DOWN>;
 
             // RE1(右): 時計回/上スクロール、反時計回/下スクロール
@@ -218,7 +218,7 @@
 
             sensor-bindings =
                 <&mouse_scroll_var SCRL_UP SCRL_DOWN>,
-                // RE1(右): 時計回/上スクロール、反時計回/下スクロール,,,,,,,,,,,,,,,,,,,,,,
+                // RE1(右): 時計回/上スクロール、反時計回/下スクロール,,,,,,,,,,,,,,,,,,,,,,,
                 <&mouse_scroll_var SCRL_RIGHT SCRL_LEFT>;
 
             // RE0(左): 時計回/右スクロール、反時計回/左スクロール
@@ -237,7 +237,7 @@
 
             sensor-bindings =
                 <&inc_dec_kp LC(MINUS) LC(EQUAL)>,
-                // RE0: ctrl + - / +,,,,,,,,,,,,,,,,,,,,,,,,,
+                // RE0: ctrl + - / +,,,,,,,,,,,,,,,,,,,,,,,,,,
                 <&inc_dec_kp C_VOL_DN C_VOL_UP>;
 
             // RE1: volume down/up
@@ -254,7 +254,7 @@
 
             sensor-bindings =
                 <&inc_dec_kp LC(MINUS) LC(EQUAL)>,
-                // RE0: ctrl + - / +,,,,,,,,,,,,,,,,,,,,,,,,,
+                // RE0: ctrl + - / +,,,,,,,,,,,,,,,,,,,,,,,,,,
                 <&inc_dec_kp C_VOL_DN C_VOL_UP>;
 
             // RE1: volume down/up
@@ -271,7 +271,7 @@
 
             sensor-bindings =
                 <&inc_dec_kp LC(MINUS) LC(EQUAL)>,
-                // RE0: ctrl + - / +,,,,,,,,,,,,,,,,,,,,,,,,,
+                // RE0: ctrl + - / +,,,,,,,,,,,,,,,,,,,,,,,,,,
                 <&inc_dec_kp C_VOL_DN C_VOL_UP>;
 
             // RE1: volume down/up
