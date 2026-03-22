@@ -199,7 +199,7 @@
 
             sensor-bindings =
                 <&mouse_scroll_var SCRL_RIGHT SCRL_LEFT>,
-                // RE0(左): 時計回/右スクロール、反時計回/左スクロール,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+                // RE0(左): 時計回/右スクロール、反時計回/左スクロール,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
                 <&mouse_scroll_var SCRL_UP SCRL_DOWN>;
 
             // RE1(右): 時計回/上スクロール、反時計回/下スクロール
@@ -211,14 +211,14 @@
             display-name = "SYMBOLS";
             bindings = <
 &kp NUMBER_1  &kp NUMBER_2      &kp N3             &kp NUMBER_4          &kp N5                 &kp NUMBER_6  &kp N7          &kp N8        &kp N9     &kp N0
-&kp TILDE     &kp MINUS         &kp UNDERSCORE     &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp LEFT      &kp DOWN_ARROW  &kp UP_ARROW  &kp RIGHT  &kp LA(ENTER)
-&kp EQUAL     &kp LEFT_BRACKET  &kp RIGHT_BRACKET  &kp LEFT_BRACE        &kp RIGHT_BRACE        &mkp RCLK     &mkp MCLK       &kp AT_SIGN   &kp SQT    &kp SEMICOLON  &kp QUESTION  &kp EXCLAMATION
+&kp TILDE     &kp MINUS         &kp UNDERSCORE     &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp LEFT      &kp DOWN_ARROW  &kp UP_ARROW  &kp RIGHT  &kp ENTER
+&kp EQUAL     &kp LEFT_BRACKET  &kp RIGHT_BRACKET  &kp LEFT_BRACE        &kp RIGHT_BRACE        &kp TAB       &mkp MCLK       &kp AT_SIGN   &kp SQT    &kp SEMICOLON  &kp QUESTION  &kp EXCLAMATION
 &trans        &kp LCTRL         &trans             &trans                &kp DEL                &trans        &trans          &trans
             >;
 
             sensor-bindings =
                 <&mouse_scroll_var SCRL_UP SCRL_DOWN>,
-                // RE1(右): 時計回/上スクロール、反時計回/下スクロール,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+                // RE1(右): 時計回/上スクロール、反時計回/下スクロール,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
                 <&mouse_scroll_var SCRL_RIGHT SCRL_LEFT>;
 
             // RE0(左): 時計回/右スクロール、反時計回/左スクロール
@@ -237,7 +237,7 @@
 
             sensor-bindings =
                 <&inc_dec_kp LC(MINUS) LC(EQUAL)>,
-                // RE0: ctrl + - / +,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+                // RE0: ctrl + - / +,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
                 <&inc_dec_kp C_VOL_DN C_VOL_UP>;
 
             // RE1: volume down/up
@@ -254,7 +254,7 @@
 
             sensor-bindings =
                 <&inc_dec_kp LC(MINUS) LC(EQUAL)>,
-                // RE0: ctrl + - / +,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+                // RE0: ctrl + - / +,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
                 <&inc_dec_kp C_VOL_DN C_VOL_UP>;
 
             // RE1: volume down/up
@@ -271,7 +271,7 @@
 
             sensor-bindings =
                 <&inc_dec_kp LC(MINUS) LC(EQUAL)>,
-                // RE0: ctrl + - / +,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+                // RE0: ctrl + - / +,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
                 <&inc_dec_kp C_VOL_DN C_VOL_UP>;
 
             // RE1: volume down/up
