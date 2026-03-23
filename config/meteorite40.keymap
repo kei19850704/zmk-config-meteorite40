@@ -1,289 +1,61 @@
-#include <behaviors/meteorite_custom_key.dtsi>
-#include <behaviors/custom_config.dtsi>
-#include <behaviors/meteorite_bt_os.dtsi>
-#include <behaviors/meteorite_mod_key.dtsi>
-#include <behaviors/meteorite_os_key.dtsi>
-#include <dt-bindings/zmk/custom_config.h>
-#include <dt-bindings/zmk/meteorite_custom_keys.h>
-#include <dt-bindings/zmk/meteorite_bt_os.h>
-
-#define ZMK_POINTING_DEFAULT_SCRL_VAL 200
-
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/pointing.h>
 
-&mt {
-    flavor = "tap-preferred"; // change hold to tap
-    tapping-term-ms = <200>;
-    quick-tap-ms = <150>; // change 200 to 150
-};
-
-&lt {
-    flavor = "tap-preferred";
-    tapping-term-ms = <150>; // change 200 to 150
-    quick-tap-ms = <150>; // change 200 to 150
-};
-
 / {
-    behaviors {
-        mouse_scroll_var: mouse_scroll_var {
-            compatible = "zmk,behavior-sensor-rotate-var";
-            #sensor-binding-cells = <2>;
-            bindings = <&msc>, <&msc>;
-
-            tap-ms = <25>;
-        };
-
-        mck_mt: mck_mt {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            flavor = "tap-preferred";
-            tapping-term-ms = <150>;
-            bindings = <&mck>, <&kp>;
-
-            display-name = "meteorite OS-Switch-mod-tap";
-        };
-
-        mck_mt_st: mck_mt_st {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            flavor = "tap-preferred";
-            tapping-term-ms = <150>;
-            bindings = <&mck>, <&alt_cmd_tab>;
-
-            display-name = "meteorite OS-Switch-mod-tap (smart toggle)";
-        };
-
-        alt_cmd_tab: alt_cmd_tab {
-            compatible = "zmk,behavior-smart-toggle";
-            #binding-cells = <0>;
-            display-name = "meteorite Smart toggle (Alt/Cmd+Tab)";
-            bindings = <&mck M_OS_ALT_CMD>, <&kp TAB>;
-
-            position-bindings = <12 13>; /* D, F */
-            position-binding-behaviors = <&kp LS(TAB)>, <&kp TAB>;
-        };
-    };
-
-    combos {
-        compatible = "zmk,combos";
-
-        lang1 {
-            bindings = <&kp LANG1>;
-            key-positions = <12 13>; /* D + F */
-            layers = <0>;
-        };
-
-        lang2 {
-            bindings = <&kp LANG2>;
-            key-positions = <16 17>; /* J + K */
-            layers = <0>;
-        };
-
-        esc {
-            bindings = <&kp ESCAPE>;
-            key-positions = <20 21>; /* Z + X */
-            layers = <0>;
-        };
-
-        tab {
-            bindings = <&kp TAB>;
-            key-positions = <0 1>; /* Q + W */
-            layers = <0>;
-        };
-
-        line_home {
-            bindings = <&mosk HOME LG(LEFT)>;
-            key-positions = <16 17>; /* J + K (on layer 2) */
-            layers = <2>;
-        };
-
-        line_end {
-            bindings = <&mosk END LG(RIGHT)>;
-            key-positions = <18 19>; /* L + - (on layer 2) */
-            layers = <2>;
-        };
-
-        doc_home {
-            bindings = <&mosk LC(HOME) LG(UP)>;
-            key-positions = <16 18>; /* J + L (on layer 2) */
-            layers = <2>;
-        };
-
-        doc_end {
-            bindings = <&mosk LC(END) LG(DOWN)>;
-            key-positions = <17 19>; /* K + - (on layer 2) */
-            layers = <2>;
-        };
-    };
-
-    macros {
-        WinD: WinD {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&kp LEFT_WIN &kp D>;
-            label = "WinD";
-        };
-
-        ctrlZ: ctrlZ {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&kp LEFT_CONTROL &kp Z>;
-            label = "CTRLZ";
-        };
-
-        ctrlX: ctrlX {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&kp LEFT_CONTROL &kp X>;
-            label = "CTRLX";
-        };
-
-        ctrlV: ctrlV {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&kp LEFT_CONTROL &kp V>;
-            label = "ctrlV";
-        };
-
-        ctrlC: ctrlC {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&kp LEFT_CONTROL &kp C>;
-            label = "CTRLC";
-        };
-
-        ctrlA: ctrlA {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&kp LEFT_CONTROL &kp A>;
-            label = "CTRLA";
-        };
-
-        ctrlS: ctrlS {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&kp LEFT_CONTROL &kp S>;
-            label = "CTRLS";
-        };
-
-        wintab: wintab {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&kp LEFT_WIN &kp TAB>;
-            label = "WINTAB";
-        };
-
-        altenter: altenter {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&kp LEFT_ALT &kp ENTER>;
-            label = "altenter";
-        };
-    };
-
     keymap {
         compatible = "zmk,keymap";
-        layout = &LAYOUT_2U_SPACE;
+        layout = &LOW_PROFILE_DEFAULT;
 
         win_default_layer {
             display-name = "BASE";
             bindings = <
-&kp Q             &kp W      &kp E             &kp R      &kp T          &kp Y             &kp U         &kp I     &kp O  &kp P
-&mt LSHIFT A      &kp S      &kp D             &kp F      &kp G          &kp H             &kp J         &kp K     &kp L  &kp ENTER
-&mt LEFT_SHIFT Z  &kp X      &kp C             &kp V      &kp B          &mkp MB2          &mkp MB1      &kp N     &kp M  &kp COMMA  &kp DOT  &mt RIGHT_SHIFT SLASH
-&kp LWIN          &kp LCTRL  &lt 1 LANGUAGE_2  &kp SPACE  &kp BACKSPACE  &lt 2 LANGUAGE_1  &kp LEFT_ALT  &kp RALT
+                &kp Q        &kp W       &kp E        &kp R        &kp T                                 &kp Y        &kp U        &kp I       &kp O  &kp P
+                &kp A        &kp S       &kp D        &kp F        &kp G                                 &kp H        &kp J        &kp K       &kp L  &kp MINUS
+                &kp Z        &kp X       &kp C        &kp V        &kp B        &mkp MB1     &mkp MB2    &kp N        &kp M        &kp COMMA   &kp DOT  &lt 4 SLASH
+                                    &kp LWIN  &kp LCTRL  &kp LSHIFT  &lt 1 SPACE  &lt 2 ENTER  &lt 2 BSPC  &lt 3 DEL  &kp RALT
             >;
-
-            sensor-bindings =
-                <&mouse_scroll_var SCRL_RIGHT SCRL_LEFT>,
-                // RE0(左): 時計回/右スクロール、反時計回/左スクロール,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-                <&mouse_scroll_var SCRL_UP SCRL_DOWN>;
-
-            // RE1(右): 時計回/上スクロール、反時計回/下スクロール
-            //<&inc_dec_kp LC(MINUS) LC(EQUAL)>, // RE0: ctrl + - / +,,,
-            //<&inc_dec_kp C_VOL_DN C_VOL_UP>; // RE1: volume down/up
         };
 
         layer_1 {
             display-name = "SYMBOLS";
             bindings = <
-&kp NUMBER_1  &kp NUMBER_2      &kp N3             &kp NUMBER_4          &kp N5                 &kp NUMBER_6  &kp N7     &kp N8       &kp N9     &kp N0
-&kp TILDE     &kp MINUS         &kp UNDERSCORE     &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp LEFT      &kp UP     &kp DOWN     &kp RIGHT  &kp ENTER
-&kp EQUAL     &kp LEFT_BRACKET  &kp RIGHT_BRACKET  &kp LBRC              &kp RBRC               &kp TAB       &mkp MCLK  &kp AT_SIGN  &kp SQT    &kp SEMICOLON  &kp QUESTION  &kp EXCLAMATION
-&trans        &kp LCTRL         &trans             &trans                &kp DEL                &trans        &trans     &trans
+                &kp LS(N1)   &kp LS(N2)  &kp LS(N3)  &kp LS(N4)  &kp LS(N5)                    &kp LS(N6) &kp LS(N7) &kp LS(N8) &kp LS(N9) &kp LS(N0)
+                &kp LS(INT3) &kp LS(N2)  &kp LS(N6)  &kp LS(N7)  &kp LS(N8)                    &kp SEMI   &kp COLON  &kp AT     &kp LBKT   &kp RBKT
+                &none        &none       &none       &none       &none      &mkp MB4  &mkp MB5 &kp GRAVE  &kp LS(CARET) &kp LS(LBKT) &kp LS(RBKT) &kp LS(INT1)
+                                     &trans     &trans    &trans    &trans    &trans     &kp DEL    &trans     &trans
             >;
-
-            sensor-bindings =
-                <&mouse_scroll_var SCRL_UP SCRL_DOWN>,
-                // RE1(右): 時計回/上スクロール、反時計回/下スクロール,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-                <&mouse_scroll_var SCRL_RIGHT SCRL_LEFT>;
-
-            // RE0(左): 時計回/右スクロール、反時計回/左スクロール
-            //<&inc_dec_kp LC(MINUS) LC(EQUAL)>, // RE0: ctrl + - / +,,,
-            //<&inc_dec_kp C_VOL_DN C_VOL_UP>; // RE1: volume down/up
         };
 
         layer_2 {
             display-name = "NUM / ARROW";
             bindings = <
-&kp F1           &kp F2      &kp F3     &kp F4     &kp F5           &kp F6       &kp F7           &kp F8     &kp F9        &kp F10
-&kp LC(Z)        &kp LC(X)   &kp LC(V)  &kp LC(C)  &kp LC(A)        &kp LG(TAB)  &kp LEFT_WIN     &kp TAB    &trans        &kp LA(ENTER)
-&kp LC(LA(DEL))  &kp ESCAPE  &none      &kp LC(S)  &kp PRINTSCREEN  &mkp MB4     &mkp MB5         &kp LG(D)  &kp LG(LEFT)  &kp LG(UP)     &kp LG(DOWN)  &kp LG(RIGHT)
-&trans           &kp LCTRL   &trans     &kp F7     &kp BACKSPACE    &trans       &kp RIGHT_SHIFT  &trans
+                &kp LS(SEMICOLON) &kp N7     &kp N8     &kp N9     &kp LS(N8)                     &none  &none     &none   &kp C_VOL_DN &kp C_VOL_UP
+                &kp LS(N0)        &kp N4     &kp N5     &kp N6     &kp LS(MINUS)                  &none  &kp LEFT  &kp UP  &kp DOWN     &kp RIGHT
+                &kp N0            &kp N1     &kp N2     &kp N3     &kp DOT    &mkp MB4   &mkp MB5  &none  &none     &none   &kp INT1     &kp INT2
+                                        &trans           &trans     &trans      &trans    &trans        &trans  &trans    &trans
             >;
-
-            sensor-bindings =
-                <&inc_dec_kp LC(MINUS) LC(EQUAL)>,
-                // RE0: ctrl + - / +,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-                <&inc_dec_kp C_VOL_DN C_VOL_UP>;
-
-            // RE1: volume down/up
         };
 
         layer_3 {
             display-name = "FUNCTION";
             bindings = <
-&kp F1  &kp F2  &kp F3  &kp F4  &kp F5           &kp F6  &kp F7  &kp F8  &kp F9  &kp F10
-&ctrlZ  &ctrlX  &ctrlV  &ctrlC  &ctrlA           &none   &none   &none   &none   &kp ENTER
-&none   &none   &none   &ctrlS  &kp PRINTSCREEN  &none   &none   &none   &none   &none      &none  &none
-&trans  &trans  &trans  &trans  &trans           &trans  &trans  &trans
+                &kp F1  &kp F2  &kp F3  &kp F4  &kp F5                  &kp F6  &kp F7  &kp F8  &kp F9  &kp F10
+                &none   &none   &none   &none   &none                   &none   &none   &none   &none   &none
+                &none   &none   &none   &none   &none   &none   &none   &none   &none   &none    &none  &none
+                                &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
             >;
-
-            sensor-bindings =
-                <&inc_dec_kp LC(MINUS) LC(EQUAL)>,
-                // RE0: ctrl + - / +,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-                <&inc_dec_kp C_VOL_DN C_VOL_UP>;
-
-            // RE1: volume down/up
         };
 
         layer_4 {
             display-name = "SETTING";
             bindings = <
-&ccfg C_CPI_DN   &ccfg C_CPI_UP   &ccfg C_ROT_DN    &ccfg C_ROT_UP    &ccfg C_SCALE_TOG       &bt BT_SEL 0  &bt BT_SEL 1    &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4
-&ccfg C_SDIV_DN  &ccfg C_SDIV_UP  &ccfg C_SCRH_TOG  &ccfg C_SCRV_TOG  &ccfg C_SCRL_SCALE_TOG  &bt BT_CLR    &bt BT_CLR_ALL  &none         &none         &none
-&ccfg C_SAVE     &ccfg C_RESET    &none             &none             &ccfg C_SCRL2_UP        &none         &none           &bootloader   &none         &none         &none  &none
-&trans           &trans           &trans            &trans            &trans                  &trans        &trans          &trans
+                &ccfg C_CPI_DN  &ccfg C_CPI_UP  &ccfg C_ROT_DN   &ccfg C_ROT_UP   &ccfg C_SCALE_TOG                        &bt BT_SEL 0   &bt BT_SEL 1    &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4
+                &ccfg C_SDIV_DN &ccfg C_SDIV_UP &ccfg C_SCRH_TOG &ccfg C_SCRV_TOG &ccfg C_SCRL_SCALE_TOG                   &bt BT_CLR     &bt BT_CLR_ALL  &none         &none         &none
+                &ccfg C_SAVE    &ccfg C_RESET   &none            &none            &ccfg C_SCRL2_UP         &none  &none    &bootloader    &none           &none         &none         &none
+                                                                    &trans       &trans  &trans  &trans  &trans  &trans    &trans        &trans
             >;
-
-            sensor-bindings =
-                <&inc_dec_kp LC(MINUS) LC(EQUAL)>,
-                // RE0: ctrl + - / +,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-                <&inc_dec_kp C_VOL_DN C_VOL_UP>;
-
-            // RE1: volume down/up
-        };
-    };
-
-    conditional_layers {
-        compatible = "zmk,conditional-layers";
-
-        test {
-            if-layers = <1 2>;
-            then-layer = <4>;
         };
     };
 };
