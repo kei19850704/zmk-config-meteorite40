@@ -1,0 +1,5 @@
+YAML
+
+build_config:
+  - board: xiao_ble/nrf52840
+    shield: meteorite40_low
